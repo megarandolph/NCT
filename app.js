@@ -1,8 +1,15 @@
+  ///////////////////////
+  // Global const
+  ///////////////////////
+
 const transactions = []
   
 const updateFormButton = document.querySelector("button#updateitem")
 const createButton = document.querySelector("button#createitem")
-const mainDiv = document.querySelector("main") 
+const mainHome = document.querySelector("main#Home")
+const mainDetail = document.querySelector("main#Detail")
+const SelectAccount = document.querySelector("Select#AccountId")
+
   
   ///////////////////////
   // Functions
@@ -24,13 +31,11 @@ const mainDiv = document.querySelector("main")
         if(result.success){
             var data = result.data;
             for(var i=0; i < data.length; i++){
-
-                const transaction = {data:data[i]}
-                transactions.push(transaction)
+                transactions.push(data[i])
                 
             }
-            console.log(data)
-            renderData()
+            console.log(transactions)
+            renderData()           
         }else{
             console.log(result.errorMessage)
         }
@@ -39,52 +44,75 @@ const mainDiv = document.querySelector("main")
     .catch(error => console.log('error', error));
   }
   
+  const GetTransactionsById = (id) =>{
+   var transactionDetail = transactions.find(x => x.id === id);
+    const myTransactionString = JSON.stringify(transactionDetail);
+    localStorage.setItem('transactionDetail', myTransactionString);
+  }
+
   const renderData = () => {
     
-    mainDiv.innerHTML = ""
+    mainHome.innerHTML = ""
   
 
     transactions.forEach((transaction, index) => {
-      const transactionDiv = document.createElement("div")// Creates new h1 element
-        transactionDiv.className = "card text-white bg-dark mb-3 col-md-4"
+      const transactionDiv = document.createElement("div")
+        transactionDiv.className = "card text-white bg-dark mb-3 col-md-4 m-2"
         transactionDiv.setAttribute("style","max-width: 18rem;")
 
       transactionDiv.innerHTML = 
-      `<div class="card-header">${transaction.data.concept}</div>
-      <div class="card-body">
-        <h5 class="card-title">${transaction.data.ammount}</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>` 
+      `<div class="card-header">${transaction.concept}</div>
+      ` 
 
       const ButtonContainer = document.createElement("div")
       ButtonContainer.className = "row justify-content-center"
 
       const deleteButton = document.createElement(`button`)
       deleteButton.id = index
-      deleteButton.className = "btn btn-danger col-md-4"
+      deleteButton.className = "btn btn-danger col-md-4 m-2"
       deleteButton.innerText = "Delete" 
       deleteButton.addEventListener("click", event => {
         transactions.splice(index, 1) 
         renderData() 
+        
       })
       ButtonContainer.appendChild(deleteButton) 
   
 
       const updateButton = document.createElement(`button`) 
-      updateButton.id = index
-      updateButton.className = "btn btn-primary col-md-4"
-      updateButton.innerText = "Update" 
+      updateButton.id = transaction.id
+      updateButton.className = "btn btn-primary col-md-4 m-2"
+      updateButton.innerText = "Detail" 
       updateButton.addEventListener("click", event => {
-        
+        GetTransactionsById(updateButton.id)
+        window.location = 'Description.html'
+
       })
       ButtonContainer.appendChild(updateButton) 
 
       transactionDiv.appendChild(ButtonContainer)
 
-      mainDiv.appendChild(transactionDiv) 
+      mainHome.appendChild(transactionDiv) 
     })
   }
   
+  const renderDataDetail = () =>{
+
+    const myTransactionString = localStorage.getItem('transactionDetail');
+    const transactionDetail = JSON.parse(myTransactionString);
+    console.log(transactionDetail);
+
+    mainDetail.innerHTML = ""
+    const transactionDiv = document.createElement("div")
+      transactionDiv.className = "card text-white bg-dark mb-3 col-md-4 m-2"
+      transactionDiv.setAttribute("style","max-width: 18rem;")
+
+    transactionDiv.innerHTML = 
+    `<div class="card-header">${transactionDetail.concept}</div>`
+
+    mainDetail.appendChild(transactionDiv) 
+  }
+
   const createData = () => {
     
     renderData() 
@@ -98,5 +126,11 @@ const mainDiv = document.querySelector("main")
   ////////////////////
   // Main App Logic
   ////////////////////
+  
 
-  GetTransactions()
+  if(window.location.pathname.split("/").pop() == "Home.html"){
+    GetTransactions()
+  }
+  else{
+    renderDataDetail()
+  }
