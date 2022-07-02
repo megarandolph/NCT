@@ -4,12 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NCT</title>
-    <link rel="stylesheet" href="bootstrap.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
   <body class="container d-flex justify-content-center" style="background-color: #05b8bb;">
-    <main id="Detail" class="container d-flex row justify-content-center col-12">   
+    <div class="row p-4">
+        
+    <main id="Detail"> 
+      <div class="container p-5">
+        <div>
+          <h1>TRANSACTIONS DETAILS - EDIT</h1>
+        </div>   
+        <div class="row" style="background-color: white;">
+          <form class="needs-validation" novalidate>
+            <div class="form-row"> 
+              <div class="form-group">
+                <label for="Concept">Concept</label>
+                <input type="text" class="form-control" id="Concept" placeholder="Concept" required>                     
+                <div class="invalid-feedback">
+                  Please insert a concept.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="Description">Description</label>
+                <input type="text" class="form-control" id="Description" placeholder="Description">                     
+                <div class="invalid-feedback">
+                  Please insert a description.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Ammount">Amount</label>
+              <input type="number" class="form-control" id="Ammount" min="0" step=".01" placeholder="Amount" required>
+        
+              <div class="invalid-feedback">
+                Please insert an amount.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Date">Date</label>
+              <input type="date" class="form-control" id="Date" value="yyyy-mm-dd" required>
+              
+              <div class="invalid-feedback">
+                Please choose a date.
+              </div>
+            </div>
+                <div class="form-group row p-3">
+                  <div class="col-6">
+                    <button type="submit" class="btn btn-success form-control">Save</button>
+                  </div>
+                  <div class="col-6">
+                    <a class="btn btn-primary form-control" href="Home.html">Go back</a>
+                  </div>
+                </div>
+            </form>               
+          </div>
+        </div>
     </main>
+  </div>
   </body>
-    <script src="bootstrap.js"></script>
-    <script src="app.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="app.js"></script>
 </html>

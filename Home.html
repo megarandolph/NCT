@@ -7,13 +7,33 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
   <body style="background-color: #05b8bb;">
-    <div class="container d-flex justify-content-center " >
+    <div class="container d-flex justify-content-center" >
       <div class="row p-4">
         <div class="d-flex justify-content-center row">
-          <h1 class="col-6">TRANSACTIONS</h1>
-          <button class="btn btn-primary col-4" id="myInput" data-toggle="modal" data-target="#">Add transaction</button>
+          <h1 class="col-3">TRANSACTIONS</h1>
         </div>
-        <main id="Home" class="container d-flex row justify-content-center col-12 p-4">   
+        <div class="d-flex p-3">
+          <div class="col-6">
+            <button class="btn btn-primary col-4" id="myInput" data-toggle="modal" data-target="#">Add transaction</button>
+          </div>
+          <div class="col-4">
+            <input class="form-control" type="text" id="TextSearch" onkeypress="return check(event)" placeholder="Search">
+          </div>
+          <div class="">
+            <button class="btn btn-primary " id="ButtonSearch">Search</button>
+            <label id="NotFound" class="" style="color: red;"></label>
+          </div>
+          
+          
+            
+
+          
+        </div>
+        <div class="d-flex justify-content-center row">
+          <button class="btn btn-primary col-6" id="Order">Order A-Z or Z-A</button>
+        </div>
+
+        <main id="Home" class="container d-flex row justify-content-center col-12 p-2">   
         </main>
       </div>
     </div>
@@ -39,7 +59,7 @@
                     </div>
                     <div class="form-group ">
                       <label for="Description">Description</label>
-                      <input type="text" class="form-control" id="Description" placeholder="Description" required>                     
+                      <input type="text" class="form-control" id="Description" placeholder="Description" >                     
                       <div class="invalid-feedback">
                         Please insert a description.
                       </div>
@@ -47,7 +67,7 @@
                   </div>
                   <div class="form-group">
                     <label for="Ammount">Amount</label>
-                    <input type="number" class="form-control" id="Ammount" min="0" placeholder="Amount" required>
+                    <input type="number" class="form-control" id="Ammount" min="0" step=".01" placeholder="Amount" required>
               
                     <div class="invalid-feedback">
                       Please insert an amount.
