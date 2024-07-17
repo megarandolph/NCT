@@ -152,7 +152,7 @@ var OrderAsc = true;
         if(result.success){
           swal("Successfully edited!", "click here to ok!", "success")
                 .then(() => {
-                  window.location = 'Index.html'
+                  window.location = 'index.html'
           });
         }else{
           swal("Error", result.errorMessage, "error");
@@ -297,7 +297,7 @@ var OrderAsc = true;
   ////////////////////
   // Main App Logic
   ////////////////////
-  if(window.location.pathname.split("/").pop() == "Index.html"){
+  if(window.location.pathname.split("/").pop() == "index.html"){
     GetTransactions()
     GetAccounts()
     
